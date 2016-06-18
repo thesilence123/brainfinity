@@ -1,9 +1,9 @@
-from theorm import Theorm, Clause, is_match
+from theorm import Theorm, Clause
 from numbers_wrapper import NaturalNumber
 import os
 import json
 import logging.config
-from theorms import commutative_addition
+from theorms import commutative_addition, zero_axiom
 
 
 def setup_logging(
@@ -25,9 +25,9 @@ def main():
     setup_logging()
     logger = logging.getLogger(__name__)
 
-    theorms = [commutative_addition]
+    theorms = [commutative_addition, zero_axiom]
 
-    givens = [given for given in [NaturalNumber('m'), 5]]
+    givens = [given for given in [NaturalNumber('m'), 5, 8, 8, 8, 8, 0, 8]]
 
     for therom_ in theorms:
         logger.debug('Going to match: %s' % therom_.name)
