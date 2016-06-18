@@ -36,8 +36,9 @@ class Given(object):
         members = {}
         found = True
         for ordered_pairs in ordered_pairses(member_signs, givens):
+            self.logger.debug('Ordered pairs: %s' % (ordered_pairs,))
             for ordered_pair in ordered_pairs:
-                self.logger.debug('Ordered pair: %s' % (ordered_pair,))
+
                 members[ordered_pair[0]] = ordered_pair[1]
             for clause in self.clauses:
                 if not self.evaluate(clause, members): found = False
@@ -45,17 +46,20 @@ class Given(object):
                 self.logger.debug('Found! The members are: %s' % members)
                 return True
             members = {}
+            found = True
         self.logger.debug('Not a match.')
         return False
 
     def evaluate(self, clause, members):
+
+        member = 'members[clause.member_sign]'
         if clause.op.startswith('.') and not clause.third:
-            return eval('members[clause.member_sign]' + clause.op)
+            return eval(member + clause.op)
         if clause.op.startswith('.') and clause.third:
-            return eval(members[clause.member_sign] + clause.op[:-1] + clause.third + clause.op[-1])
+            return eval(member + clause.op[:-1] + clause.third + clause.op[-1])
         if clause.op == 'isinstance()':
-            return eval('isinstance(' + 'members[clause.member_sign]' + ',' + clause.third + ')')
-        return eval(members[clause.member_sign] + clause.op + clause.third)
+            return eval('isinstance(' + member + ',' + clause.third + ')')
+        return eval(member + clause.op + 'clause.third')
 
 
 class Clause(object):
@@ -70,4 +74,4 @@ class Clause(object):
         self.third = third
 
     def __repr__(self):
-        return self.member_sign + self.op + self.third if self.third is not None else ''
+        return self.member_sign + self.op + str(self.third) if self.third is not None else ''
