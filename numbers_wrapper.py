@@ -1,4 +1,6 @@
 import numbers
+
+
 class NaturalNumber(numbers.Number):
     def __init__(self, value):
         self.value = value
@@ -9,6 +11,7 @@ class NaturalNumber(numbers.Number):
         if isinstance(other, numbers.Real):
             return self.value == other
         return NotImplemented
+
 
 class RealNumber(NaturalNumber):
     def __init__(self, value):

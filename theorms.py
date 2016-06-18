@@ -1,5 +1,3 @@
-
-
 from theorm import Theorm, Clause, Given
 import numbers
 
@@ -7,5 +5,5 @@ import numbers
 #                     'a * b == 0')
 
 commutative_addition = Theorm('Addition Commutativity', Given([Clause('a', 'isinstance()', 'numbers.Number'),
-                                                         Clause('b', 'isinstance()', 'numbers.Number')]),
+                                                               Clause('b', 'isinstance()', 'numbers.Number')]),
                               'a + b == b + a')

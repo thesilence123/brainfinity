@@ -5,6 +5,7 @@ import json
 import logging.config
 from theorms import commutative_addition
 
+
 def setup_logging(
         default_path='logging.json', default_level=logging.INFO):
     """
@@ -32,7 +33,6 @@ def main():
         logger.debug('Going to match: %s' % therom_.name)
         if therom_.given.is_match(givens):
             logging.debug('Matched! Given: %s, Result: %s' % (therom_.given.clauses, therom_.result,))
-
 
 
 if __name__ == '__main__':
