@@ -17,6 +17,7 @@ class Given(object):
     It has a list of clauses about members.
     A member could be a number or a wrapper.
     """
+
     def __init__(self, clauses):
         self.logger = logging.getLogger(__name__)
         self.clauses = [clause for clause in set(clauses)]
@@ -57,16 +58,16 @@ class Given(object):
         return eval(members[clause.member_sign] + clause.op + clause.third)
 
 
-
-
 class Clause(object):
     """
     It can be true or false.
     """
-    def __init__(self, member_sign, op, third = None):
+
+    def __init__(self, member_sign, op, third=None):
         super(Clause, self).__init__()
         self.member_sign = member_sign
         self.op = op
         self.third = third
+
     def __repr__(self):
         return self.member_sign + self.op + self.third if self.third is not None else ''
