@@ -12,6 +12,12 @@ class NaturalNumber(numbers.Number):
             return self.value == other
         return NotImplemented
 
+    def __str__(self):
+        return self.value
+
+    def __repr__(self):
+        return self.value
+
 
 class RealNumber(NaturalNumber):
     def __init__(self, value):
