@@ -70,23 +70,3 @@ class Clause(object):
         self.third = third
     def __repr__(self):
         return self.member_sign + self.op + self.third if self.third is not None else ''
-
-
-
-
-def is_match(givens, theorm):
-    """
-    Return true if the bunch of givens match the theorms givens.
-    :param givens: list of clauses
-    :param theorm: a theorm to match to
-    :return: True if the givens match
-    :rtype: bool
-    """
-    logger = logging.getLogger(__name__)
-    ldict = dict(locals())
-    logger.debug('Dict of locals: %s' % ldict)
-    logger.debug('The givens are: %s' % ldict['givens'])
-    for prerequisite in theorm.givens:
-        logger.debug('Prerequisite is: %s' % prerequisite.given)
-        logger.debug('Mini result is: %s' % eval(prerequisite.given, ldict))
-    return all([eval(given, ldict) for given in theorm.givens])
